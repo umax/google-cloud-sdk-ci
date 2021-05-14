@@ -8,6 +8,7 @@ RUN mkdir -p /usr/share/man/man1/ && \
     apt-transport-https \
     ca-certificates \
     curl \
+    default-jre \
     gnupg \
     make
 
@@ -15,7 +16,8 @@ RUN mkdir -p /usr/share/man/man1/ && \
 RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk-stretch main" > /etc/apt/sources.list.d/google-cloud-sdk.list && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
     apt-get update && apt-get install --no-install-recommends -y \
-        google-cloud-sdk && \
+        google-cloud-sdk \
+        google-cloud-sdk-datastore-emulator && \
     rm -rf /var/lib/apt/lists/* && \
     gcloud config set core/disable_usage_reporting true && \
     gcloud config set component_manager/disable_update_check true && \
